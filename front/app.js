@@ -1,3 +1,8 @@
+// Función para marcar una tarea como completada
+function toggleTaskCompletion(task) {
+    task.classList.toggle('completed');
+}
+
 // Función para agregar una tarea
 function addTask() {
     const input = document.getElementById('taskInput');
@@ -10,6 +15,12 @@ function addTask() {
             <span>${taskText}</span>
             <button class="delete-btn" onclick="deleteTask(this)">Eliminar</button>
         `;
+        // Agregar la clase "toggle-completion" al <li> y el evento click correspondiente
+        li.classList.add('toggle-completion');
+        li.onclick = function() {
+            toggleTaskCompletion(this);
+        };
+
         taskList.appendChild(li);
 
         // Limpiar el campo de entrada
@@ -19,7 +30,8 @@ function addTask() {
     }
 }
 
-// Función para eliminar una tarea
+
+// función para eliminar una tarea
 function deleteTask(btn) {
     const li = btn.parentNode;
     const taskList = li.parentNode;
